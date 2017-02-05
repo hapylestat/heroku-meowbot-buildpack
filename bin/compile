@@ -12,6 +12,9 @@ main() {
 
     announce "Building opus_sm"
     build-opus
+
+    announce "Download ffmpeg"
+    download-ffmpeg
 }
 
 install() {
@@ -27,6 +30,13 @@ set-indent() {
 announce() {
     echo "-----> nginx-buildpack: $*"
 }
+
+download-ffmpeg(){
+  cd /app/.heroku/python/bin
+  curl https://dl.dropboxusercontent.com/u/2398939/ffmpeg/ffmpeg -O
+  chmod 777 ffmpeg
+}
+
 
 build-opus() {
     declare opus_build_dir=/tmp/opus-build
