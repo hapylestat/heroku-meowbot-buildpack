@@ -44,9 +44,15 @@ build-opus() {
     cd $opus_build_dir
 
     curl http://downloads.xiph.org/releases/opus/opus-1.1.4.tar.gz -O
-    tar xvf opus-1.1.4.tar.gz
+
+    echo "Unpacking...."
+    tar xvf opus-1.1.4.tar.gz 1>/dev/null 2>&1
     cd opus-1.1.4
+
+    echo "configuring...."
     ./configure --prefix=/app/.heroku/vendor 1>/dev/null 2>&1
+
+    echo "Building...."
     make 1>/dev/null 2>&1
     make install 1>/dev/null 2>&1
 
