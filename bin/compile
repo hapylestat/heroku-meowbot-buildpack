@@ -10,10 +10,10 @@ main() {
 
     set -eo pipefail
 
-    announce "Building opus_sm"
+    announce "Building OPUS"
     build-opus
 
-    announce "Download ffmpeg"
+    announce "Installing FFmpeg"
     download-ffmpeg
 }
 
@@ -28,7 +28,7 @@ set-indent() {
 }
 
 announce() {
-    echo "-----> nginx-buildpack: $*"
+    echo "-----> meowbot-buildpack: $*"
 }
 
 download-ffmpeg(){
@@ -46,9 +46,9 @@ build-opus() {
     curl http://downloads.xiph.org/releases/opus/opus-1.1.4.tar.gz -O
     tar xvf opus-1.1.4.tar.gz
     cd opus-1.1.4
-    ./configure --prefix=/app/.heroku/vendor
-    make
-    make install
+    ./configure --prefix=/app/.heroku/vendor 1>/dev/null 2>&1
+    make 1>/dev/null 2>&1
+    make install 1>/dev/null 2>&1
 
 }
 
